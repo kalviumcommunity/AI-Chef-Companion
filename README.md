@@ -7,8 +7,6 @@
 
 Whether you're a novice cook wondering what to do with leftover ingredients or an experienced chef planning a multi-day meal plan, this AI companion is designed to help. It can generate novel recipes, adapt existing ones to your dietary needs, provide detailed nutritional information, and even help you manage your grocery list.
 
-This project was built as a capstone for a Generative AI course, demonstrating a comprehensive understanding of modern LLM architecture and agent-based systems.
-
 ## Key Features
 
 *   **Dynamic Recipe Generation:** Get recipes based on the ingredients you have on hand, your dietary restrictions (e.g., vegan, gluten-free), or your culinary preferences.
@@ -52,24 +50,9 @@ This project showcases key concepts in building modern, agentic AI systems:
 *   **Web Framework:** Flask / FastAPI for building a user-facing API.
 *   **External APIs:** Edamam (for nutrition), Todoist (for shopping lists)
 
-## 🚀 Setup and Installation
+## Setup and Installation (Work in Progress)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/kalviumcommunity/AI-Chef-Companion.git
-    cd AI-Chef-Companion
-    ```
-
-2.  **Create a virtual environment:**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+Detailed setup instructions will be provided upon completion of the initial prototype. The current focus is on building the core agent logic using the planned tech stack below.
 
 ## ▶️ Usage
 
