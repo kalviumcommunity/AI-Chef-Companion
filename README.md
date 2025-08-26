@@ -1,6 +1,6 @@
 # AI-Chef-Companion – AI-Powered Culinary Assistant
 
-🚀 ## Project Overview
+## Project Overview
 
 AI-Chef-Companion is an AI-powered kitchen assistant that helps users discover recipes, optimize ingredient usage, plan meals, and follow step-by-step cooking instructions. Powered by Large Language Models (LLMs) and prompt engineering, it analyzes user inputs (like available ingredients, dietary preferences, or cuisine type) to deliver structured cooking guidance and personalized meal suggestions.
 
@@ -8,7 +8,7 @@ The project employs advanced prompting methods (system/user prompts, zero-shot, 
 
 ---
 
-🔧 ## Features
+## Features
 
 *   **Personalized Recipe Suggestions** – Recommends dishes based on ingredients, preferences, and cuisine.
 *   **Step-by-step Cooking Guidance** – Walks users through recipes interactively.
@@ -19,7 +19,7 @@ The project employs advanced prompting methods (system/user prompts, zero-shot, 
 
 ---
 
-🎯 ## Tech Stack
+## Tech Stack
 
 *   **Backend:** Node.js / Python
 *   **LLM:** OpenAI / Hugging Face API
@@ -28,7 +28,7 @@ The project employs advanced prompting methods (system/user prompts, zero-shot, 
 
 ---
 
-📝 ## System and User Prompts (RTFC Framework)
+## System and User Prompts (RTFC Framework)
 
 #### 🔹 System Prompt
 
@@ -44,8 +44,7 @@ The project employs advanced prompting methods (system/user prompts, zero-shot, 
 > I have tomatoes, pasta, and cheese. I want to cook an Italian dinner. Suggest a recipe and guide me through the cooking steps. Format your answer as per the defined JSON schema.
 
 ---
-
-📌 ## RTFC Framework Usage
+## RTFC Framework Usage
 
 *   **R (Role):** AI Chef Companion
 *   **T (Task):** Analyze inputs, recommend recipes, guide cooking, optimize ingredients
@@ -54,7 +53,7 @@ The project employs advanced prompting methods (system/user prompts, zero-shot, 
 
 ---
 
-🎯 ## Zero-Shot Prompting
+## 🎯 Zero-Shot Prompting
 
 In AI-Chef Companion, we apply **Zero-Shot Prompting**, where the AI performs recipe recommendation and cooking guidance without any example recipes provided upfront. The AI relies solely on clear instructions from the system and user prompts.
 
@@ -74,7 +73,7 @@ In AI-Chef Companion, we apply **Zero-Shot Prompting**, where the AI performs re
 
 ---
 
-🎯 ## One-Shot Prompting
+## 🎯 One-Shot Prompting   
 
 In AI-Chef Companion, we use **One-Shot Prompting**, where the AI is given a single example of a recipe recommendation or cooking guidance task before performing the actual task. This approach helps guide the AI with a reference example while keeping the model generalizable and flexible.
 
@@ -127,7 +126,7 @@ In AI-Chef Companion, we use **One-Shot Prompting**, where the AI is given a sin
 
 ---
 
-🎯 ## Multi-Shot Prompting
+## 🎯 Multi-Shot Prompting
 
 In AI-Chef Companion, we apply **Multi-Shot Prompting**, where the AI is provided with multiple examples of recipe recommendations and cooking guidance before being asked to perform the actual task. This method ensures the AI clearly understands the pattern, structure, and expectations of the output.
 
@@ -203,7 +202,7 @@ In AI-Chef Companion, we apply **Multi-Shot Prompting**, where the AI is provide
 
 ---
 
-🎯 ## Dynamic Prompting
+## 🎯 Dynamic Prompting
 
 In AI-Chef Companion, we use **Dynamic Prompting**, where the prompt is automatically adapted based on the user's input context, such as available ingredients, dietary preferences, or cuisine type. This makes the system flexible and personalized instead of relying on fixed, static instructions.
 
@@ -237,7 +236,7 @@ The dynamically generated prompt becomes:
 
 ---
 
-🎯 ## Chain-of-Thought Prompting
+## 🎯 Chain-of-Thought Prompting
 
 In AI-Chef Companion, we apply **Chain-of-Thought (CoT) Prompting**, where the AI is encouraged to reason step-by-step internally before providing the final answer. This technique helps the system explain why a recipe or cooking suggestion is made, rather than just giving the result.
 
@@ -292,3 +291,81 @@ In AI-Chef Companion, we apply **Chain-of-Thought (CoT) Prompting**, where the A
 *   Encourages deeper reasoning behind cooking suggestions.
 *   Reduces errors and improves the quality of recommendations.
 *   Provides explainable AI outputs, building user trust and clarity.
+
+
+## 🎯 Evaluation Dataset & Testing Framework
+To ensure AI-Chef Companion works reliably, we created an evaluation pipeline with:
+
+*   A dataset of 5+ sample ingredient sets and recipe requests
+*   A judge prompt to compare AI-generated output with expected results
+*   A lightweight testing framework to run all test cases automatically
+
+#### 📂 Evaluation Dataset (5 Samples)
+```json
+[
+  {
+    "id": 1,
+    "ingredients": ["tomato", "basil", "mozzarella"],
+    "preference": "Italian cuisine",
+    "expected": "Recipe: Caprese Salad"
+  },
+  {
+    "id": 2,
+    "ingredients": ["chicken", "garlic", "lemon"],
+    "preference": "Mediterranean cuisine",
+    "expected": "Recipe: Chicken Lemon Garlic"
+  },
+  {
+    "id": 3,
+    "ingredients": ["potatoes", "butter", "onions"],
+    "preference": "Comfort food",
+    "expected": "Recipe: Mashed Potatoes with Caramelized Onions"
+  },
+  {
+    "id": 4,
+    "ingredients": ["pasta", "tomato sauce", "cheese"],
+    "preference": "Italian cuisine",
+    "expected": "Recipe: Classic Spaghetti Pomodoro"
+  },
+  {
+    "id": 5,
+    "ingredients": ["salmon", "dill", "lemon"],
+    "preference": "Seafood cuisine",
+    "expected": "Recipe: Lemon Dill Salmon"
+  }
+]
+```
+
+Of course. Here is that section formatted as Markdown.
+
+#### Judge Prompt
+> You are a judge. Compare the AI's output with the expected result.
+>
+> **Evaluation parameters:**
+> *   **Correctness** – Did the model provide a relevant recipe?
+> *   **Completeness** – Were the cooking steps and ingredient optimization meaningful?
+> *   **Format** – Is the response in the required JSON schema?
+> *   **Clarity** – Is the feedback understandable and clear?
+>
+> Return: Pass / Fail with justification.
+
+#### ⚙️ Testing Framework Setup
+A simple test runner executes the evaluation by:
+
+1.  Iterating through dataset samples
+2.  Sending inputs to the AI model
+3.  Capturing and passing outputs to the judge prompt
+4.  Logging results as ✅ Pass / ❌ Fail with explanations
+
+Example Python pseudocode for the testing loop:
+```python
+for test in dataset:
+    ai_output = run_model(test["ingredients"], test["preference"])
+    verdict = judge(ai_output, test["expected"])
+    print(f"Test {test['id']}: {verdict}")
+```
+
+#### ✅ Why This Setup?
+*   Ensures objective evaluation of AI outputs.
+*   Provides clear and reproducible accuracy metrics.
+*   Supports continuous improvement and debugging.
