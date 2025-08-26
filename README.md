@@ -1,8 +1,8 @@
-# AI-Chef Companion – AI-Powered Culinary Assistant
+# AI-Chef-Companion – AI-Powered Culinary Assistant
 
 🚀 ## Project Overview
 
-AI-Chef Companion is an AI-powered kitchen assistant that helps users discover recipes, optimize ingredient usage, plan meals, and follow step-by-step cooking instructions. Powered by Large Language Models (LLMs) and prompt engineering, it analyzes user inputs (like available ingredients, dietary preferences, or cuisine type) to deliver structured cooking guidance and personalized meal suggestions.
+AI-Chef-Companion is an AI-powered kitchen assistant that helps users discover recipes, optimize ingredient usage, plan meals, and follow step-by-step cooking instructions. Powered by Large Language Models (LLMs) and prompt engineering, it analyzes user inputs (like available ingredients, dietary preferences, or cuisine type) to deliver structured cooking guidance and personalized meal suggestions.
 
 The project employs advanced prompting methods (system/user prompts, zero-shot, one-shot, multi-shot) to ensure context-aware and accurate culinary support.
 
@@ -71,3 +71,56 @@ In AI-Chef Companion, we apply **Zero-Shot Prompting**, where the AI performs re
 *   The AI works effectively without needing sample input-output pairs.
 *   Makes the system flexible and adaptable to varying cuisines and ingredient combinations.
 *   Ensures scalability across multiple dietary preferences and cooking scenarios.
+
+---
+
+🎯 ## One-Shot Prompting
+
+In AI-Chef Companion, we use **One-Shot Prompting**, where the AI is given a single example of a recipe recommendation or cooking guidance task before performing the actual task. This approach helps guide the AI with a reference example while keeping the model generalizable and flexible.
+
+#### 🔹 One-Shot Prompt
+
+**System Prompt:**
+> You are an AI culinary assistant. Analyze the given ingredients and user preferences, then suggest a recipe and provide cooking instructions. Always respond in JSON format with the following fields:
+>
+> *   `recipe`: Suggested recipe name
+> *   `steps`: List of cooking instructions
+> *   `ingredient_optimization`: Suggestions or substitutions
+> *   `meal_plan`: (Optional) Weekly meal plan
+
+**User Prompt (with one example):**
+> Example input:
+> ```json
+> {
+>   "ingredients": ["chicken", "rice", "broccoli"],
+>   "preference": "Asian cuisine"
+> }
+> ```
+> Example output:
+> ```json
+> {
+>   "recipe": "Chicken Stir Fry",
+>   "steps": [
+>     "Cut chicken into strips",
+>     "Stir fry chicken with vegetables",
+>     "Serve hot with rice"
+>   ],
+>   "ingredient_optimization": [
+>     "Use tofu instead of chicken for a vegetarian option"
+>   ],
+>   "meal_plan": null
+> }
+> ```
+> Now, suggest a recipe and cooking steps for this input:
+> ```json
+> {
+>   "ingredients": ["tomatoes", "pasta", "cheese"],
+>   "preference": "Italian cuisine"
+> }
+> ```
+
+#### 📌 Why One-Shot Prompting?
+
+*   Provides one clear guiding example that sets the response pattern.
+*   Ensures the AI generates consistent, structured, and relevant outputs.
+*   Reduces ambiguity compared to zero-shot prompting by clarifying expectations with an example.
