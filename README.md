@@ -234,3 +234,61 @@ The dynamically generated prompt becomes:
 *   Automatically adapts prompts to the user's specific context and preferences.
 *   Increases scalability and personalization of cooking guidance.
 *   Reduces manual intervention while ensuring consistent, structured output.
+
+---
+
+🎯 ## Chain-of-Thought Prompting
+
+In AI-Chef Companion, we apply **Chain-of-Thought (CoT) Prompting**, where the AI is encouraged to reason step-by-step internally before providing the final answer. This technique helps the system explain why a recipe or cooking suggestion is made, rather than just giving the result.
+
+#### 🔹 Chain-of-Thought Prompt
+
+**System Prompt:**
+> You are an AI culinary assistant. Analyze the provided ingredients and preferences step by step (reasoning internally), then provide your final response only in JSON format with the fields:
+>
+> *   `recipe`
+> *   `steps`
+> *   `ingredient_optimization`
+> *   `meal_plan`
+>
+> Do not reveal the intermediate reasoning steps in the output.
+
+**User Prompt:**
+> Review the following ingredients and preference:
+> ```json
+> {
+>   "ingredients": ["potatoes", "onion", "butter"],
+>   "preference": "Comfort food"
+> }
+> ```
+
+**🔹 Expected Reasoning (hidden from user):**
+
+1.  Potatoes and onion are common ingredients in comfort food.
+2.  Butter adds richness and flavor.
+3.  A classic dish with these is mashed potatoes with caramelized onions.
+4.  Steps can include peeling, boiling, mashing potatoes, and sautéing onions in butter.
+
+**🔹 Final Output (shown to user):**
+
+```json
+{
+  "recipe": "Mashed Potatoes with Caramelized Onions",
+  "steps": [
+    "Peel and boil potatoes until tender",
+    "Mash potatoes with butter and cream",
+    "Sauté onions in butter until golden",
+    "Mix onions into mashed potatoes and serve"
+  ],
+  "ingredient_optimization": [
+    "Use olive oil instead of butter for a healthier option"
+  ],
+  "meal_plan": null
+}
+```
+
+#### 📌 Why Chain-of-Thought Prompting?
+
+*   Encourages deeper reasoning behind cooking suggestions.
+*   Reduces errors and improves the quality of recommendations.
+*   Provides explainable AI outputs, building user trust and clarity.
