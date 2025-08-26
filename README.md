@@ -200,3 +200,37 @@ In AI-Chef Companion, we apply **Multi-Shot Prompting**, where the AI is provide
 *   Provides multiple reference examples to show the expected output pattern.
 *   Helps the AI learn complex tasks where one example might not suffice.
 *   Improves accuracy and consistency in recipe recommendations and cooking guidance.
+
+---
+
+🎯 ## Dynamic Prompting
+
+In AI-Chef Companion, we use **Dynamic Prompting**, where the prompt is automatically adapted based on the user's input context, such as available ingredients, dietary preferences, or cuisine type. This makes the system flexible and personalized instead of relying on fixed, static instructions.
+
+#### 🔹 Dynamic Prompt Example
+
+**System Prompt (Template):**
+> You are an AI culinary assistant. Analyze the given ingredients and user preferences to suggest recipes and provide cooking instructions. Always respond in JSON format with fields:
+>
+> *   `recipe`
+> *   `steps`
+> *   `ingredient_optimization`
+> *   `meal_plan` (optional)
+
+**User Prompt (Generated Dynamically):**
+
+Given user input:
+```json
+{
+  "ingredients": ["chicken", "garlic", "lemon"],
+  "preference": "Mediterranean cuisine"
+}
+```
+The dynamically generated prompt becomes:
+> Review the following ingredients for Mediterranean cuisine: chicken, garlic, lemon. Suggest a recipe with step-by-step instructions and any ingredient optimization. Format your response in the specified JSON schema.
+
+#### 📌 Why Dynamic Prompting?
+
+*   Automatically adapts prompts to the user's specific context and preferences.
+*   Increases scalability and personalization of cooking guidance.
+*   Reduces manual intervention while ensuring consistent, structured output.
