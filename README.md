@@ -1,4 +1,4 @@
-# AI-Chef-Companion – AI-Powered Culinary Assistant
+# AI-Chef-Companion – AI-Powered Culinary Assistant  
 
 ## Project Overview
 
@@ -336,8 +336,6 @@ To ensure AI-Chef Companion works reliably, we created an evaluation pipeline wi
 ]
 ```
 
-Of course. Here is that section formatted as Markdown.
-
 #### Judge Prompt
 > You are a judge. Compare the AI's output with the expected result.
 >
@@ -369,3 +367,32 @@ for test in dataset:
 *   Ensures objective evaluation of AI outputs.
 *   Provides clear and reproducible accuracy metrics.
 *   Supports continuous improvement and debugging.
+
+
+Of course. Here is the "Temperature" section formatted as Markdown.
+
+---
+
+## 🎯 Temperature
+
+In AI-Chef Companion, we tune the **temperature** parameter of the Large Language Models (LLMs) to control the randomness and creativity of the generated culinary responses.
+
+#### 🔹 What is Temperature?
+The temperature parameter adjusts the likelihood of different token selections during text generation:
+
+*   **Low temperature (close to 0):** Produces more deterministic, focused, and repetitive outputs, ideal for tasks requiring accuracy and consistency, such as step-by-step cooking instructions or factual recipe details.
+*   **Moderate temperature (around 1.0):** Balances creativity and coherence, useful for general recipe suggestions and conversational guidance.
+*   **High temperature (above 1.0):** Generates more creative, diverse, and less predictable outputs, which is beneficial for brainstorming new recipes or imaginative culinary ideas.
+
+#### 🔹 How Temperature Works
+LLMs predict the next word/token based on probabilities. The temperature parameter scales these probabilities:
+
+*   **Lower temperature** sharpens the distribution, making the model favor the most likely tokens.
+*   **Higher temperature** smooths the distribution, increasing the chance of selecting less likely tokens and adding variety.
+
+This trade-off lets developers control the creativity versus precision balance in the AI's outputs.
+
+#### 🔹 Why Temperature Matters in AI-Chef Companion
+*   Ensures cooking instructions are clear and reliable when temperature is low.
+*   Allows exploration of novel recipe ideas at higher temperatures.
+*   Helps tailor responses based on user preferences for creativity or precision.
