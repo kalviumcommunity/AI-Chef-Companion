@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "ingredients": ["tomato", "basil", "mozzarella"],
+    "preference": "Italian cuisine",
+    "expected": "Recipe: Caprese Salad"
+  },
+  {
+    "id": 2,
+    "ingredients": ["chicken", "garlic", "lemon"],
+    "preference": "Mediterranean cuisine",
+    "expected": "Recipe: Chicken Lemon Garlic"
+  }
+]
