@@ -1,0 +1,31 @@
+{
+  "name": "ai-chef-companion",
+  "version": "1.0.0",
+  "description": "AI-Chef-Companion is an AI-powered kitchen assistant that helps users discover recipes, optimize ingredient usage, plan meals, and follow step-by-step cooking instructions. Powered by Large Language Models (LLMs) and prompt engineering, it analyzes user inputs (like available ingredients, dietary preferences, or cuisine type) to deliver structured cooking guidance and personalized meal suggestions.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalviumcommunity/AI-Chef-Companion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kalviumcommunity/AI-Chef-Companion/issues"
+  },
+  "homepage": "https://github.com/kalviumcommunity/AI-Chef-Companion#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongodb": "^6.19.0"
+  }
+}

@@ -368,9 +368,6 @@ for test in dataset:
 *   Provides clear and reproducible accuracy metrics.
 *   Supports continuous improvement and debugging.
 
-
-Of course. Here is the "Temperature" section formatted as Markdown.
-
 ---
 
 ## 🎯 Temperature
