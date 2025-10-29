@@ -1,16 +1,35 @@
 // server.js
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const { listAvailableModels } = require("./controllers/geminiClient");
 
-// Fix the path - remove ./src since we're already in src folder
 const recipeRoutes = require("./routes/recipe");
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
+
+// Basic security hardening
+app.use(helmet());
+app.use(rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // limit each IP to 100 requests per windowMs
+}));
 
 app.use("/api/recipe", recipeRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+// Centralized error handler (should be after routes)
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 3000;  // Add fallback port
+
+app.listen(PORT, async () => {
+  console.log(`Server running on port ${PORT}`);
+  try {
+    await listAvailableModels();
+  } catch (err) {
+    console.error("Failed to list models:", err);
+  }
 });
