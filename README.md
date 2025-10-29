@@ -19,6 +19,26 @@ The project employs advanced prompting methods (system/user prompts, zero-shot, 
 
 ---
 
+## Setup
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Create `.env` file with:
+   ```
+   PORT=3000
+   MONGODB_URI=your_mongodb_connection_string
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
+4. Run: `npm start`
+
+## API Endpoints
+- POST `/api/recipe/suggest` - Get recipe suggestions
+- POST `/api/recipe/mealplan` - Generate meal plans
+- POST `/api/recipe/substitute` - Find ingredient substitutes
+- POST `/api/recipe/add` - Add new recipe
+- GET `/api/recipe/all` - Get all recipes
+
+---
+
 ## Tech Stack
 
 *   **Backend:** Node.js / Python

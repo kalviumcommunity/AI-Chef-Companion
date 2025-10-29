@@ -1,10 +1,15 @@
 // src/prompts/templates.js
-
 module.exports = {
   zeroShot: ({ ingredients, preference }) => `
-You are an AI Chef Companion. Analyze ingredients: ${ingredients.join(", ")};
-Preference: ${preference}. Respond in JSON with recipe, steps, ingredient_optimization, meal_plan (optional).
-`,
+    Generate a recipe using these ingredients: ${ingredients.join(", ")}
+    Dietary preference: ${preference}
+    Return as JSON: {
+      "title": "Recipe name",
+      "ingredients": ["list"],
+      "steps": ["numbered steps"],
+      "nutrition": {"calories": "...", "protein": "..."}
+    }
+  `,
 
   oneShot: ({ ingredients, preference }) => `
 You are an AI Chef Companion.

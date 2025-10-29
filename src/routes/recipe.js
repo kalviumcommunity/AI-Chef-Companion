@@ -15,7 +15,8 @@ router.post("/suggest", async (req, res) => {
     await saveRecipe({ ingredients, preference, result, created: new Date() });
     res.json({ result });
   } catch (err) {
-    res.status(500).json({ error: "Gemini API error" });
+    console.error(`API error [suggest]:`, err);
+    res.status(500).json({ error: "Internal server error", details: err.message });
   }
 });
 
@@ -45,5 +46,28 @@ Suggest optimal culinary substitutes for ${ingredient} for dietary requirement: 
     res.status(500).json({ error: "Gemini API error" });
   }
 });
+
+router.post('/add', async (req, res) => {
+  const doc = req.body;
+  if (!doc || !doc.recipe || !doc.ingredients || !doc.steps) {
+    return res.status(400).json({ error: "Invalid recipe data" });
+  }
+  try {
+    await saveRecipe(doc);
+    res.json({ status: "added" });
+  } catch (err) {
+    res.status(500).json({ error: "Error saving recipe" });
+  }
+});
+
+router.get('/all', async (req, res) => {
+  try {
+    const recipes = await getRecipes();
+    res.json(recipes);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching recipes" });
+  }
+});
+
 
 module.exports = router;
