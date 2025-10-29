@@ -1,3 +1,112 @@
+AI Chef Companion
+
+AI Chef Companion is a small Node.js + Express backend that uses Google's Generative AI (Gemini) to generate recipe suggestions, meal plans, and evaluations. It demonstrates prompt engineering patterns (zero-shot, one-shot, multi-shot), a controller that calls the Gemini API, and route handling for recipe-related endpoints.
+
+Quick start
+
+1. Install dependencies
+
+```powershell
+npm install
+```
+
+2. Copy `.env.example` to `.env` and fill in real values (do NOT commit `.env`)
+
+```powershell
+copy .env.example .env
+# then edit .env with your API key and DB URI
+```
+
+3. Start the server
+
+```powershell
+node src/server.js
+```
+
+The server listens on `PORT` from `.env` (fallback 3000).
+
+Project layout
+
+- `src/server.js` - Express app and middleware (helmet + rate-limit added).
+- `src/controllers/geminiClient.js` - Wrapper around `@google/generative-ai` (load key from env, helper to generate content).
+- `src/prompts/` - Prompt templates used to build Gemini prompts.
+- `src/routes/recipe.js` - API routes for recipe suggestions/meal plans.
+- `src/db/` - MongoDB models for recipes and evaluations.
+- `src/evaluation/` - Evaluation runner that uses prompts and the AI client to score outputs.
+
+Environment variables
+
+Provide these in a local `.env` file (example included as `.env.example`):
+
+- `GEMINI_API_KEY` - Google Generative AI API key
+- `MONGODB_URI` - MongoDB connection string (Atlas)
+- `PORT` - optional server port
+
+Important: Do NOT commit `.env` to version control. Use `.env.example` in the repo as a template.
+
+Security checklist & immediate actions
+
+1. Rotate exposed secrets now (you must do this in the cloud consoles):
+   - Revoke the exposed `GEMINI_API_KEY` from Google Cloud / AI Studio and create a new key.
+   - In MongoDB Atlas, rotate the user password used in `MONGODB_URI` and update the connection string.
+
+2. Replace values in your local `.env` with the new credentials.
+
+3. If the secrets were pushed to a remote repository, remove them from git history (see instructions below) and then rotate again.
+
+How to revoke / rotate keys
+
+- Gemini (Google Generative AI): visit Google Cloud Console (APIs & Services) or AI Studio where keys are issued. Revoke the old API key and create a new one. Update `.env`.
+- MongoDB Atlas: go to Atlas > Database Access > edit the user password or create a new user with a strong password. Update `MONGODB_URI`.
+
+Removing secrets from git history (optional, destructive)
+
+If you previously pushed secrets to a remote, simply removing them from the index won't remove them from history. Two common tools:
+
+1) BFG Repo-Cleaner (simpler)
+
+Commands:
+
+```powershell
+java -jar bfg.jar --delete-files .env
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+git push --force
+```
+
+2) git-filter-repo (recommended for complex tasks)
+
+Commands:
+
+```powershell
+# Example: remove file named .env from history
+git filter-repo --path .env --invert-paths
+git push --force
+```
+
+WARNING: These rewrite history commands are destructive. Coordinate with your team. After running them you must force-push and all collaborators must re-clone or reset their clones.
+
+Endpoints (examples)
+
+- `POST /api/recipe/suggest` - body: { ingredients: ["chicken","rice"], preference: "healthy" }
+- `POST /api/recipe/mealplan` - body: { ... }
+
+Check `src/routes/recipe.js` for full details.
+
+Development notes
+
+- We added basic hardening: `helmet()` and `express-rate-limit` in `src/server.js`.
+- Use a secrets manager in production (GitHub Secrets, GCP Secret Manager, AWS Secrets Manager), not `.env`.
+
+Audit
+
+I ran a quick `npm audit` in this workspace; results are saved in `npm-audit.json`.
+
+Next steps I can help with
+
+- Prepare a safe git-history scrub script and walk you through it.
+- Create CI workflows that inject secrets as environment variables (GitHub Actions example).
+- Add validation middleware and a centralized error handler.
 # AI-Chef-Companion – AI-Powered Culinary Assistant  
 
 ## Project Overview
